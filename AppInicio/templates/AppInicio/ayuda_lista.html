@@ -1,0 +1,13 @@
+{% extends "AppInicio/padre.html" %}
+
+{% block contenido %}
+  <h1>Publicaciones de ayuda</h1>
+  {% for help in helps %}
+    <div>
+      <h2>{{ help.title }}</h2>
+      <p>{{ help.content }}</p>
+      <a href="{% url 'help_detail' pk=help.pk %}">Ver detalles</a>
+    </div>
+  {% endfor %}
+{% endblock %}
+

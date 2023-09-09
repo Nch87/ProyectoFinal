@@ -1,0 +1,16 @@
+{% extends "AppInicio/padre.html" %}
+
+{% block contenido %}
+  <h1>Publicaciones de adopción</h1>
+  {% for adopcion in adopcion %}
+    <div>
+      <h2>{{ adopcion.titulo }}</h2>
+      <img src="{{ adopcion.image.url }}" alt="{{ adopcion.titulo }}">
+      <p>{{ adopcion.animal_info }}</p>
+      <p>{{ adopcion.contenido }}</p>
+      <a href="{% url 'adopcion_detalle' pk=adopcion.pk %}">Ver detalles</a>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+
