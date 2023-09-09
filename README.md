@@ -1,16 +1,17 @@
 # ProyectoFinal
-Proyecto Final Natalia Chazarreta
+## Proyecto Final Natalia Chazarreta
 Este es el repositorio para el Proyecto Final del curso de Python
-Descripción
+
+## Descripción
 Este proyecto es una aplicación web para una organización sin fines de lucro que se dedica a ayudar a los animales. La aplicación permite a los usuarios ver información sobre animales disponibles para adopción, publicar comentarios en publicaciones de blog y obtener información sobre cómo ayudar a la organización.
 
-# Funcionalidades
-Ver una lista de animales disponibles para adopción.
-Ver detalles sobre un animal en particular, incluyendo una imagen y una descripción.
-Publicar comentarios en publicaciones de blog.
-Ver una lista de publicaciones de blog.
-Ver detalles sobre una publicación de blog en particular, incluyendo comentarios.
-Ver información sobre cómo ayudar a la organización.
+## Funcionalidades
+- Ver una lista de animales disponibles para adopción.
+- Ver detalles sobre un animal en particular, incluyendo una imagen y una descripción.
+- Publicar comentarios en publicaciones de blog.
+- Ver una lista de publicaciones de blog.
+- Ver detalles sobre una publicación de blog en particular, incluyendo comentarios.
+- Ver información sobre cómo ayudar a la organización.
 
 ## Modelos
 ### Post
