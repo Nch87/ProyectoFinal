@@ -4,10 +4,10 @@
   <h1>Publicaciones de mascotas</h1>
   {% for pet in pets %}
     <div>
-      <h2>{{ pet.title }}</h2>
+      <h2>{{ pet.titulo }}</h2>
       <p>{{ pet.pet_info }}</p>
-      <p>{{ pet.content }}</p>
-      <a href="{% url 'pet_detail' pk=pet.pk %}">Ver detalles</a>
+      <p>{{ pet.contenido }}</p>
+      <a href="{% url 'pet_detalle' pk=pet.pk %}">Ver detalles</a>
     </div>
   {% endfor %}
 {% endblock %}

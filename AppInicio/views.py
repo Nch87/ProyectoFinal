@@ -93,7 +93,7 @@ def ayuda_lista(request):
 @login_required
 def ayuda_detalle(request, pk):
     ayuda = get_object_or_404(Ayuda, pk=pk)
-    return render(request, 'AppInicio/ayuda_detalle.html', {'help': ayuda})
+    return render(request, 'AppInicio/ayuda_detalle.html', {'ayuda': ayuda})
 
 @login_required
 def ayuda_nueva(request):
