@@ -24,7 +24,7 @@
                 <a class="navbar-brand" href="#!">Blog Mascotera</a>
                 {% if user.is_authenticated %}
                 <a class="btn btn-info" href="{% url 'adopcion_nuevo' %}">Adopciones</a>
-                <a class="btn btn-info" href="{% url 'adopcion_detalle' %}">Adoptalo!</a>
+                <a class="btn btn-info" href="{% url 'adopcion_detalle' pk=adopcion.pk %}">Adoptalo!</a> 
                 <a class="btn btn-info" href="{% url 'adopcion_lista' %}">Publicacion Adopciones</a>
                 <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
             {% else %}

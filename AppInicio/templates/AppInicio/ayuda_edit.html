@@ -4,7 +4,7 @@
   <h1>Nueva publicación de ayuda</h1>
   <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_table }}
     <button type="submit">Guardar</button>
   </form>
 {% endblock %}

@@ -2,11 +2,11 @@
 
 {% block contenido %}
   <h1>Publicaciones de ayuda</h1>
-  {% for help in helps %}
+  {% for ayuda in ayuda %}
     <div>
-      <h2>{{ help.title }}</h2>
-      <p>{{ help.content }}</p>
-      <a href="{% url 'help_detail' pk=help.pk %}">Ver detalles</a>
+      <h2>{{ ayuda.titulo }}</h2>
+      <p>{{ ayuda.contenido }}</p>
+      <a href="{% url 'ayuda_detalle' pk=ayuda.pk %}">Ver detalles</a>
     </div>
   {% endfor %}
 {% endblock %}

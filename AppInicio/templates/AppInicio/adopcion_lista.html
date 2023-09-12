@@ -2,13 +2,13 @@
 
 {% block contenido %}
   <h1>Publicaciones de adopción</h1>
-  {% for adoption in adoptions %}
+  {% for adopcion in adopciones %}
     <div>
-      <h2>{{ adoption.title }}</h2>
-      <img src="{{ adoption.image.url }}" alt="{{ adoption.title }}">
-      <p>{{ adoption.animal_info }}</p>
-      <p>{{ adoption.content }}</p>
-      <a href="{% url 'adoption_detail' pk=adoption.pk %}">Ver detalles</a>
+      <h2>{{ adoption.titulo }}</h2>
+      <img src="{{ adoption.image.url }}" alt="{{ adopcion.titulo }}">
+      <p>{{ adopcion.animal_info }}</p>
+      <p>{{ adopcion.contenido }}</p>
+      <a href="{% url 'adopcion_detalle' pk=adopcion.pk %}">Ver detalles</a>
     </div>
   {% endfor %}
 {% endblock %}
