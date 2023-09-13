@@ -38,7 +38,7 @@ class RegistroUserForm(UserCreationForm):
 class AdopcionForm(forms.ModelForm):
     class Meta:
         model = Adopcion
-        fields = ('titulo', 'imagen', 'animal_info', 'contenido')
+        fields = ('autor','nombre', 'raza', 'edad', 'animal_info', 'imagen')
 
 class AyudaForm(forms.ModelForm):
     class Meta:

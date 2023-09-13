@@ -11,10 +11,10 @@ urlpatterns = [
     path('editarPerfil', editarPerfil, name='editarPerfil'),
     
     
-    path('adopcion_detalle/<int:pk>/', adopcion_detalle, name='adopcion_detalle'),
+    path('adopcion_detalle/', adopcion_detalle, name='adopcion_detalle'),
     path('adopcion_lista/', adopcion_lista, name='adopcion_lista'),
     path('adopcion_nuevo/', adopcion_nuevo, name='adopcion_nuevo'),
-    path('ayuda_detalle/<int:pk>/', adopcion_detalle, name='adopcion_detalle'),
+    path('ayuda_detalle/', ayuda_detalle, name='ayuda_detalle'),
     path('ayuda_lista/', ayuda_lista, name='ayuda_lista'),
     path('ayuda_nueva/', ayuda_nueva, name='ayuda_nueva'),
     path('pet_detalle/<int:pk>/', pet_detalle, name='pet_detalle'),

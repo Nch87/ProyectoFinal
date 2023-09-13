@@ -63,15 +63,15 @@ def editarPerfil(request):
         form=UserEditForm(instance=usuario)
         return render(request, "AppInicio/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
 
-@login_required
+
 def adopcion_lista(request):
     adopciones = Adopcion.objects.all()
     return render(request, 'AppInicio/adopcion_lista.html', {'adopciones': adopciones})
 
-@login_required
-def adopcion_detalle(request, pk):
-    adopcion = get_object_or_404(Adopcion, pk=pk)
-    return render(request, 'AppInicio/adopcion_detalle.html', {'adopcion': adopcion})
+
+def adopcion_detalle(request):
+    adopciones = Adopcion.objects.all()
+    return render(request, 'AppInicio/adopcion_detalle.html', {'adopciones': adopciones})
 
 @login_required
 def adopcion_nuevo(request):
@@ -79,8 +79,9 @@ def adopcion_nuevo(request):
         form = AdopcionForm(request.POST, request.FILES)
         if form.is_valid():
             adopcion = form.save(commit=False)
+            adopcion.autor = request.user
             adopcion.save()
-            return redirect('AppInicio/adopcion_detalle', pk=adopcion.pk)
+            return redirect('home')
     else:
         form = AdopcionForm()
     return render(request, 'AppInicio/adopcion_edit.html', {'form': form})
