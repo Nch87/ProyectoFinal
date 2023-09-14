@@ -1,15 +1,23 @@
 {% extends "AppInicio/padre.html" %}
 
 {% block contenido %}
-  <h1>Publicaciones de adopción</h1>
-  {% for adopcion in adopciones %}
-    <div>
-      <h2>{{ adopcion.nombre }}</h2>
-      <img src="{{ adoption.imagen.url }}" alt="{{ adopcion.nombre }}">
-      <p>{{ adopcion.animal_info }}</p>
-      <p>{{ adopcion.raza }}</p>
-      <a href="{% url 'adopcion_detalle' %}">Ver detalles</a>
-    </div>
+  <h1>{{ adopcion.nombre }}</h1>
+  <img src="{{ adopcion.imagen.url }}" alt="Imagen de adopción">
+  <p>{{ adopcion.animal_info }}</p>
+  <p>{{ adopcion.raza }}</p>
+  <p>{{ adopcion.autor }}</p>
+  <h3>Comentarios</h3>
+  {% for comentario in comentarios %}
+    <p>{{ comentario.contenido }}</p>
+    <p>Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</p>
+  {% empty %}
+    <p>No hay comentarios todavía.</p>
   {% endfor %}
+  <p>Agregar un comentario</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publicar</button>
+  </form>
 {% endblock %}
 

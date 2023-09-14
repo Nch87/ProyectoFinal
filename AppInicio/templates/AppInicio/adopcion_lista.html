@@ -2,15 +2,16 @@
 
 {% load static %}
 
-{% block contenido %}
-  <h1>Publicaciones de adopción</h1>
-  {% for adopcion in adopciones %}
-    <div>
-      <h2>{{ adopcion.nombre }}</h2>
-      <img src="{% static 'adoption_images/'|add:adopcion.id|add:'/'|add:adopcion.imagen.name %}" alt="{{ adopcion.nombre }}">
-      <p>{{ adopcion.animal_info }}</p>
-      <p>{{ adopcion.raza }}</p>
-    </div>
-  {% endfor %}
+{% block titulo %}
+Hermosos en Adopcion
 {% endblock %}
 
+{% block contenido %}
+  <h1>Publicaciones de Adopción</h1>
+  {% for adopcion in adopciones %}
+    <h2>{{ adopcion.nombre }}</h2>
+    <p>{{ adopcion.descripcion }}</p>
+    <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
+    <p><a href="{% url 'AppInicio:adopcion_detalle' adopcion_id=adopcion.id %}">Ver detalles</a></p>
+  {% endfor %}
+{% endblock %}

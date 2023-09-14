@@ -38,5 +38,13 @@ class AyudaForm(forms.ModelForm):
 class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
-        fields = ('titulo', 'pet_info', 'contenido')        
+        fields = ('titulo', 'pet_info', 'contenido')     
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ["contenido"]
+        widgets = {
+            "contenido": forms.Textarea(attrs={"rows": 3}),
+        }           
                           

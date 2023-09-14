@@ -7,8 +7,8 @@ app_name='AppInicio'
 urlpatterns = [
   
    path('', home, name='home'),
-   path('adopcion_detalle/', adopcion_detalle, name='adopcion_detalle'),
    path('adopcion_lista/', adopcion_lista, name='adopcion_lista'),
+   path("adopcion/<int:adopcion_id>/", adopcion_detalle, name="adopcion_detalle"),
    path('ayuda_detalle/', ayuda_detalle, name='ayuda_detalle'),
    path('ayuda_lista/', ayuda_lista, name='ayuda_lista'),
    path('ayuda_nueva/', ayuda_nueva, name='ayuda_nueva'),
@@ -23,6 +23,6 @@ urlpatterns = [
    path("login/", login_ingreso, name="login"),
    path("register/",register, name="register"),
    path("logout/",LogoutView.as_view(), name="logout"),
-   path("editarPerfil", editarPerfil, name="editarPerfil"),
+   path("editarPerfil/", editarPerfil, name="editarPerfil"),
 
 ]

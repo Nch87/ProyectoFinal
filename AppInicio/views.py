@@ -4,7 +4,6 @@ from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required 
-import logging
 
 
 def home(request):
@@ -45,15 +44,11 @@ def editarPerfil(request):
         form=UserEditForm(instance=usuario)
         return render(request, "AppInicio/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
 
+# ADOPCIONES
 
 def adopcion_lista(request):
     adopciones = Adopcion.objects.all()
     return render(request, 'AppInicio/adopcion_lista.html', {'adopciones': adopciones})
-
-
-def adopcion_detalle(request):
-    adopciones = Adopcion.objects.all()
-    return render(request, 'AppInicio/adopcion_detalle.html', {'adopciones': adopciones})
 
 @login_required
 def adopcion_nuevo(request):
@@ -67,6 +62,24 @@ def adopcion_nuevo(request):
     else:
         form = AdopcionForm()
     return render(request, 'AppInicio/adopcion_nuevo.html', {'form': form})
+
+@login_required
+def adopcion_detalle(request, adopcion_id):
+    adopcion = get_object_or_404(Adopcion, id=adopcion_id)
+    comentarios = adopcion.comentarios.order_by('-pub_date')
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.adopcion = adopcion
+            comentario.autor = request.user
+            comentario.save()
+            return redirect("AppInicio:adopcion_detalle", adopcion_id=adopcion.id)
+    else:
+        form = ComentarioForm()
+    return render(request, "AppInicio/adopcion_detalle.html", {"adopcion": adopcion, "comentarios": comentarios, "form": form})
+
+#AYUDAS
 
 @login_required
 def ayuda_lista(request):

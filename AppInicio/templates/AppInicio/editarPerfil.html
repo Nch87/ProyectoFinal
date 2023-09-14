@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block titulo %}
-Editar Usuario: 
+Editar Usuario:
 {% endblock %}
 
 {% block contenido %}
 <h3>{{ mensaje }}</h3>
 
-<form action="{% url 'editarPerfil' %}"  method="POST"> {% csrf_token %}
+<form action="{% url 'AppInicio:editarPerfil' %}"  method="POST"> {% csrf_token %}
       
   <table>
 
@@ -20,7 +20,5 @@ Editar Usuario:
   <input type="submit" value="Guardar">
 
   <form/> 
-
-
   
 {% endblock %}
