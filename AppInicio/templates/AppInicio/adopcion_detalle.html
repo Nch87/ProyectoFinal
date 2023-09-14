@@ -4,7 +4,7 @@
   <h1>Publicaciones de adopción</h1>
   {% for adopcion in adopciones %}
     <div>
-      <h2>{{ adoption.nombre }}</h2>
+      <h2>{{ adopcion.nombre }}</h2>
       <img src="{{ adoption.imagen.url }}" alt="{{ adopcion.nombre }}">
       <p>{{ adopcion.animal_info }}</p>
       <p>{{ adopcion.raza }}</p>

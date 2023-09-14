@@ -81,10 +81,10 @@ def adopcion_nuevo(request):
             adopcion = form.save(commit=False)
             adopcion.autor = request.user
             adopcion.save()
-            return redirect('home')
+            return redirect("AppInicio:home")
     else:
         form = AdopcionForm()
-    return render(request, 'AppInicio/adopcion_edit.html', {'form': form})
+    return render(request, 'AppInicio/adopcion_nuevo.html', {'form': form})
 
 @login_required
 def ayuda_lista(request):

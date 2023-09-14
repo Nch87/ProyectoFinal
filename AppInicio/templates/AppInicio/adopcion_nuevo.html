@@ -1,0 +1,10 @@
+{% extends "AppInicio/padre.html" %}
+
+{% block contenido %}
+  <h1>Crea una nueva publicación de adopción</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Publicar</button>
+  </form>
+{% endblock %}
