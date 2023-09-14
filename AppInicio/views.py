@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required 
+import logging
 
 
 def home(request):
@@ -22,26 +23,7 @@ def register(request):
        else:
            form=RegistroUserForm()
            return render(request, "AppInicio/register.html", {"form":form})
-
-def login_ingreso(request):
-    if request.method=="POST":
-        form=AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            info=form.cleaned_data
-            user=info["username"]
-            clave=info["password"]
-            usuario=authenticate(username=user, password=clave)
-            if usuario is not None:
-                login(request, usuario)
-                return render(request, "AppInicio/home.html", {"mensaje":f"Usuario {user} Ingreso Correctamente"})        
-            else:
-                return render(request, "AppInicio/login.html", {"form":form, "mensaje":"Datos Invalidos"})
-        else:
-            return render(request, "AppInicio/login.html", {"form":form, "mensaje":"Datos Invalidos"})
-    else:
-        form=AuthenticationForm()
-        return render(request, "AppInicio/login.html", {"form":form})
-
+    
 @login_required
 def editarPerfil(request):
     usuario=request.user
@@ -129,3 +111,22 @@ def pet_nuevo(request):
     else:
         form = PetForm()
     return render(request, 'AppInicio/pet_edit.html', {'form': form})
+
+def login_ingreso(request):
+     if request.method=="POST":
+         form=AuthenticationForm(request, data=request.POST)
+         if form.is_valid():
+             info=form.cleaned_data
+             user=info["username"]
+             clave=info["password"]
+             usuario=authenticate(username=user, password=clave)
+             if usuario is not None:
+                 login(request, usuario)
+                 return render(request, "AppInicio/home.html", {"mensaje":f"Usuario {user} Ingreso Correctamente"})        
+             else:
+                 return render(request, "AppInicio/login.html", {"form":form, "mensaje":"Datos Invalidos"})
+         else:
+             return render(request, "AppInicio/login.html", {"form":form, "mensaje":"Datos Invalidos"})
+     else:
+        form=AuthenticationForm()
+        return render(request, "AppInicio/login.html", {"form":form}) 

@@ -9,7 +9,7 @@ Ingreso
 {% block contenido %}
 <h3>{{ mensaje }}</h3>
 
-<form action="{% url 'login' %}"  method="POST"> {% csrf_token %}
+<form action="{% url 'AppInicio:login' %}"  method="POST"> {% csrf_token %}
       
   <table>
 
@@ -22,5 +22,4 @@ Ingreso
 <form/> 
 
 {% endblock %}
-
 

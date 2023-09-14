@@ -3,6 +3,7 @@
     <head>
 
         {% load static %}
+        
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -25,11 +26,10 @@
                 <a href="{% url 'AppInicio:home' %}">Inicio</a>
                 {% if user.is_authenticated %}
                 <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Adopciones</a>
-                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_detalle' %}">Adoptalo!</a> 
                 <a class="btn btn-info" href="{% url 'AppInicio:adopcion_lista' %}">Publicacion Adopciones</a>
                 <li><a href="{% url 'AppInicio:logout' %}">Cerrar sesión</a></li>
             {% else %}
-                <li><a href="{% url 'AppInicio:login' %}">Iniciar sesión</a></li>
+                <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>
                 <li><a href="{% url 'AppInicio:register' %}">Registrarse</a></li>
                 {% endif %}    
             </div>
@@ -90,21 +90,21 @@
         <section class="showcase">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('/static/AppInicio/assets/img/Cachorros-1.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Adopciones!</h2>
-                        <p class="lead mb-0">Si tenes un peludito para dar en Adopcion publica su foto y tus datos para que te podamos ayudar a econtrarle un hogar.</p>
+                        <p class="lead mb-0">Si tenes un peludito para dar en Adopcion publica su foto y tus datos para que te podamos ayudar a encontrarle un hogar.</p>
                     </div>
                 </div>
                 <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
+                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('/static/AppInicio/assets/img/Animales-de-la-calle-como-ayudar.jpg')"></div>
                     <div class="col-lg-6 my-auto showcase-text">
                         <h2>Ayudanos a Ayudar!</h2>
                         <p class="lead mb-0">Estamos en contacto con Varios Refugios que necesitan de nuestra ayuda, si te gustaria colaborar Contactanos!</p>
                     </div>
                 </div>
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image:url('/static/AppInicio/assets/img/perrito4.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>Mostranos a tu Mascota!</h2>
                         <p class="lead mb-0">Somos una Comunidad Mascotera y que mejor que presumir entre todos a nuestros Bebes!</p>
@@ -119,21 +119,21 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/img/perrito1.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito1.jpg" alt="..." />
                             <h5>Junior</h5>
                             <p class="font-weight-light mb-0">"Busco una casita donde me sepan cuidar"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/img/perrito2.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito2.jpg" alt="..." />
                             <h5>Pepe</h5>
                             <p class="font-weight-light mb-0">"Espero enamorar a alguien con este dientito!"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="assets/img/perrito3.jpg" alt="..." />
+                            <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito3.jpg" alt="..." />
                             <h5>Uma</h5>
                             <p class="font-weight-light mb-0">"Te gustaria ser mi Mama!"</p>
                         </div>

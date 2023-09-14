@@ -23,6 +23,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.author.username} on {self.post.title}'
+    
+def image_upload_path(instance, filename):
+    return 'adoption_images/{}/{}'.format(instance.id, filename)    
 
 class Adopcion(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
@@ -30,7 +33,7 @@ class Adopcion(models.Model):
     raza = models.CharField(max_length=200,default='desconocida')
     edad = models.IntegerField(default=1)
     animal_info = models.TextField()
-    imagen = models.ImageField(upload_to='adoption_images/')
+    imagen = models.ImageField(upload_to=image_upload_path)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
