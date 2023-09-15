@@ -16,6 +16,7 @@ urlpatterns = [
    path('pet_lista/', pet_lista, name='pet_lista'),
    path('pet_nuevo/', pet_nuevo, name='pet_nuevo'),
    path('adopcion/nuevo/', adopcion_nuevo, name='adopcion_nuevo'),
+   
     
     
  #LOGIN LOGOUT REGISTER

@@ -33,7 +33,8 @@ class AdopcionForm(forms.ModelForm):
 class AyudaForm(forms.ModelForm):
     class Meta:
         model = Ayuda
-        fields = ('titulo', 'contenido')
+        fields = ['nombre', 'email', 'telefono', 'mensaje']
+
         
 class PetForm(forms.ModelForm):
     class Meta:

@@ -23,15 +23,16 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">Blog Mascotera</a>
-                <!--<a href="{% url 'AppInicio:home' %}">Inicio</a> -->
+                <a class="btn btn-info" href="{% url 'AppInicio:home' %}">Inicio</a>
                 <a class="btn btn-info" href="{% url 'AppInicio:adopcion_lista' %}">Publicacion Adopciones</a>
                 {% if user.is_authenticated %}
+                <a class="btn btn-success" href="{% url 'AppInicio:ayuda_lista' %}">Ayudanos</a>
                 <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Adopciones</a>
                 <p> Bienvenido: {{ user.username }}</p>
                 <a class="btn btn-danger" href="{% url 'AppInicio:logout' %}">Cerrar sesión</a>
                 <a class="btn btn-info" href="{% url 'AppInicio:editarPerfil' %}">Editar Perfil</a>
             {% else %}
-                <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>              
                 <a class="btn btn-success" href="{% url 'AppInicio:register' %}">Registrarse</a>
                 {% endif %}    
             </div>

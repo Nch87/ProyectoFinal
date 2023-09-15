@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 
+
 def image_upload_path(instance, filename):
     return 'adoption_images/{}/{}'.format(instance.id, filename)    
 
@@ -28,12 +29,15 @@ class Comentario(models.Model):
         return f"{self.autor.username} en {self.adopcion.nombre}"   
 
 class Ayuda(models.Model):
-    titulo = models.CharField(max_length=200)
-    contenido = models.TextField()
-    pub_date = models.DateTimeField(auto_now_add=True)
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100)
+    telefono = models.CharField(max_length=20)
+    mensaje = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.titulo
+        return self.nombre
+
 
 class Pet(models.Model):
     titulo = models.CharField(max_length=200)
@@ -47,5 +51,6 @@ class Pet(models.Model):
 class Avatar(models.Model):
         imagen= models.ImageField(upload_to="avatars")
         user=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank= True)
+     
     
  

@@ -3,11 +3,15 @@ from .models import *
 from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.conf import settings
+import os 
 
 
 def home(request):
     return render(request,"AppInicio/home.html")
+
     
 def register(request):
        if request.method=="POST":
@@ -83,8 +87,14 @@ def adopcion_detalle(request, adopcion_id):
 
 @login_required
 def ayuda_lista(request):
-    ayuda = Ayuda.objects.all()
-    return render(request, 'AppInicio/ayuda_lista.html', {'ayuda': ayuda})
+    if request.method == 'POST':
+        form = AyudaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, "AppInicio/home.html", {"mensaje":" Muchas Gracias por tu Colaboracion"}) 
+    else:
+        form = AyudaForm()
+    return render(request, "AppInicio/ayuda_lista.html", {'form': form})
 
 @login_required
 def ayuda_detalle(request, pk):

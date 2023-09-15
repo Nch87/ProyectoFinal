@@ -1,13 +1,15 @@
 {% extends "AppInicio/padre.html" %}
 
+{% block titulo %}
+Ayudanos a Ayudar!
+{% endblock %}
+
 {% block contenido %}
-  <h1>Publicaciones de ayuda</h1>
-  {% for ayuda in ayuda %}
-    <div>
-      <h2>{{ ayuda.titulo }}</h2>
-      <p>{{ ayuda.contenido }}</p>
-      <a href="{% url 'ayuda_detalle' pk=ayuda.pk %}">Ver detalles</a>
-    </div>
-  {% endfor %}
+  <h1>Dejanos tus datos para contactarte</h1>
+  <form action="{% url 'AppInicio:ayuda_lista' %}"  method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Enviar</button>
+  </form>
 {% endblock %}
 
