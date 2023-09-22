@@ -23,14 +23,18 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">Blog Mascotera</a>
-                <a class="btn btn-info" href="{% url 'AppInicio:home' %}">Inicio</a>
-                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_lista' %}">Publicacion Adopciones</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:home' %}" role="button">Inicio</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:adopcion_lista' %}">❤Para Adopcion❤</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:ayuda_lista' %}">Nos Ayudas?😁</a>
                 {% if user.is_authenticated %}
-                <a class="btn btn-success" href="{% url 'AppInicio:ayuda_lista' %}">Ayudanos</a>
-                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Adopciones</a>
-                <p> Bienvenido: {{ user.username }}</p>
+                {% if user.is_superuser %}
+                  <a class="btn btn-success" href="{% url 'AppInicio:ayuda_detalle' %}">Ayudas</a>
+                {% endif %}
+                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Nueva Adopcion 🤞</a>
+                <a class="btn btn-danger" href="{% url 'AppInicio:busqueda_adopcion' %}">Buscar Adopcion</a>
                 <a class="btn btn-danger" href="{% url 'AppInicio:logout' %}">Cerrar sesión</a>
                 <a class="btn btn-info" href="{% url 'AppInicio:editarPerfil' %}">Editar Perfil</a>
+                <p> Bienvenido: {{ user.username }}</p>
             {% else %}
                 <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>              
                 <a class="btn btn-success" href="{% url 'AppInicio:register' %}">Registrarse</a>
@@ -118,27 +122,27 @@
         <!-- Testimonials-->
         <section class="testimonials text-center bg-light">
             <div class="container">
-                <h2 class="mb-5">Ellos Buscan un Hogar</h2>
+                <h2 class="mb-5">Ellos Encontraron un Hogar</h2>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito1.jpg" alt="..." />
                             <h5>Junior</h5>
-                            <p class="font-weight-light mb-0">"Busco una casita donde me sepan cuidar"</p>
+                            <p class="font-weight-light mb-0">"Gracias a la Publicacion de mi rescatista hoy tengo una familia"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito2.jpg" alt="..." />
                             <h5>Pepe</h5>
-                            <p class="font-weight-light mb-0">"Espero enamorar a alguien con este dientito!"</p>
+                            <p class="font-weight-light mb-0">"Con este dientito enamore a mas de una familia"</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="testimonial-item mx-auto mb-5 mb-lg-0">
                             <img class="img-fluid rounded-circle mb-3" src="\static\AppInicio\assets\img\perrito3.jpg" alt="..." />
                             <h5>Uma</h5>
-                            <p class="font-weight-light mb-0">"Te gustaria ser mi Mama!"</p>
+                            <p class="font-weight-light mb-0">"Hoy estoy con mi mama humana que me da mucho amor!"</p>
                         </div>
                     </div>
                 </div>
@@ -149,7 +153,7 @@
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <h2 class="mb-4">Estas listo para ayudarlos? Ingresa Ahora!
+                        <h2 class="mb-4">Estas listo para ayudarlos? ¡Ingresa Ahora!
                         </h2>
                         <!-- Signup form-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -157,10 +161,10 @@
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- This form is pre-integrated with SB Forms.-->
                         <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
+                        <!-- https://startbootstrap.com/solution/contact-forms
+                        <!-- to get an API token!
                         <form class="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
+                            <!-- Email address input
                             <div class="row">
                                 <div class="col">
                                     <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Email Address" data-sb-validations="required,email" />
@@ -168,7 +172,7 @@
                                     <div class="invalid-feedback text-white" data-sb-feedback="emailAddressBelow:email">Email Address Email is not valid.</div>
                                 </div>
                                 <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                            </div>
+                            </div> -->
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -196,26 +200,24 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+
+                            <li class="list-inline-item"><a href="{% url 'AboutMe:about_me' %}">AboutMe</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{% url 'AboutMe:contacto' %}">Contact</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="#!"><i class="bi-linkedln fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                            </li>
+                                <a href="https://www.linkedin.com/in/natalia-chazarreta-b0491a235" target="_blank"><i class="bi-linkedin fs-3"></i></a>
+                            </li>                            
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="#!"><i class="bi-instagraffm fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

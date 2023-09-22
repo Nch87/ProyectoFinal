@@ -1,15 +1,15 @@
 {% extends "AppInicio/padre.html" %}
 
 {% block contenido %}
-  <h1>{{ adopcion.nombre }}</h1>
+  <h1>Nombre: {{ adopcion.nombre }}</h1>
   <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
-  <p>{{ adopcion.animal_info }}</p>
-  <p>{{ adopcion.raza }}</p>
-  <p>{{ adopcion.autor }}</p>
-  <p>{{ adopcion.fecha_creacion }}</p>
+  <p>Informacion: {{ adopcion.animal_info }}</p>
+  <p>Raza: {{ adopcion.raza }}</p>
+  <p>Autor: {{ adopcion.autor }}</p>
+  <p>Fecha Post: {{ adopcion.fecha_creacion }}</p>
   <h3>Comentarios</h3>
   {% for comentario in comentarios %}
-    <p>{{ comentario.contenido }}</p>
+    <p>Comentario: {{ comentario.contenido }}</p>
     <p>Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</p>
   {% empty %}
     <p>No hay comentarios todavía.</p>

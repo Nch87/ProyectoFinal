@@ -3,16 +3,15 @@ from .models import *
 from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.conf import settings
-import os 
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
+#Inicio
 def home(request):
     return render(request,"AppInicio/home.html")
 
-    
+
+# Registro y Perfil    
 def register(request):
        if request.method=="POST":
            form=RegistroUserForm(request.POST)
@@ -20,7 +19,7 @@ def register(request):
                info=form.cleaned_data
                nombre_user=info["username"]
                form.save()
-               return render(request, "AppInicio/home.html", {"mensaje":f"Usuario {nombre_user} Creado Correctamente"})
+               return render(request, "AppInicio/home.html", {"mensaje":f"Usuario {nombre_user} Creado Correctamente, Bienvenido a nuestra Comunidad"})
            else:
                 return render(request, "AppInicio/register.html", {"form":form, "mensaje":"Datos Invalidos"})
        else:
@@ -48,6 +47,7 @@ def editarPerfil(request):
         form=UserEditForm(instance=usuario)
         return render(request, "AppInicio/editarPerfil.html", {"form": form, "nombreusuario":usuario.username})
 
+
 # ADOPCIONES
 
 def adopcion_lista(request):
@@ -67,6 +67,7 @@ def adopcion_nuevo(request):
         form = AdopcionForm()
     return render(request, 'AppInicio/adopcion_nuevo.html', {'form': form})
 
+@user_passes_test(lambda u: u.is_authenticated, login_url='AppInicio:register')
 @login_required
 def adopcion_detalle(request, adopcion_id):
     adopcion = get_object_or_404(Adopcion, id=adopcion_id)
@@ -83,8 +84,10 @@ def adopcion_detalle(request, adopcion_id):
         form = ComentarioForm()
     return render(request, "AppInicio/adopcion_detalle.html", {"adopcion": adopcion, "comentarios": comentarios, "form": form})
 
+
 #AYUDAS
 
+@user_passes_test(lambda u: u.is_authenticated, login_url='AppInicio:register')
 @login_required
 def ayuda_lista(request):
     if request.method == 'POST':
@@ -97,9 +100,9 @@ def ayuda_lista(request):
     return render(request, "AppInicio/ayuda_lista.html", {'form': form})
 
 @login_required
-def ayuda_detalle(request, pk):
-    ayuda = get_object_or_404(Ayuda, pk=pk)
-    return render(request, 'AppInicio/ayuda_detalle.html', {'ayuda': ayuda})
+def ayuda_detalle(request):
+    ayudas = Ayuda.objects.all()
+    return render(request, "AppInicio/ayuda_detalle.html", {'ayudas': ayudas})
 
 @login_required
 def ayuda_nueva(request):
@@ -112,6 +115,9 @@ def ayuda_nueva(request):
     else:
         form = AyudaForm()
     return render(request, 'AppInicio/ayuda_edit.html', {'form': form})
+
+
+# Mascotas
 
 @login_required
 def pet_lista(request):
@@ -135,6 +141,8 @@ def pet_nuevo(request):
         form = PetForm()
     return render(request, 'AppInicio/pet_edit.html', {'form': form})
 
+# Login
+
 def login_ingreso(request):
      if request.method=="POST":
          form=AuthenticationForm(request, data=request.POST)
@@ -152,4 +160,19 @@ def login_ingreso(request):
              return render(request, "AppInicio/login.html", {"form":form, "mensaje":"Datos Invalidos"})
      else:
         form=AuthenticationForm()
-        return render(request, "AppInicio/login.html", {"form":form}) 
+        return render(request, "AppInicio/login.html", {"form":form})    
+
+# Busqueda Adopcion 
+
+@login_required
+def busqueda_adopcion(request):
+    return render(request,"AppInicio/busqueda_adopcion.html")
+
+@login_required
+def buscar(request):
+    raza=request.GET["raza"]
+    if raza!="":
+        adopcion=Adopcion.objects.filter(raza__icontains=raza)
+        return render(request, "AppInicio/resultadoBusqueda.html",{"adopcion":adopcion})
+    else:
+        return render(request,"AppInicio/busqueda_adopcion.html", {"mensaje":"No se ingresaron Datos"})    

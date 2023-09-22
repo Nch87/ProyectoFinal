@@ -1,0 +1,14 @@
+{% extends "AppInicio/padre.html" %}
+
+{% block titulo %}
+Contacto
+{% endblock %}
+
+{% block contenido %}
+  <h1>Contacto</h1>
+  <form method="POST" action="{% url 'AboutMe:contacto' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}

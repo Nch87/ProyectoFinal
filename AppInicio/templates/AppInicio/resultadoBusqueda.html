@@ -1,0 +1,29 @@
+{% extends "AppInicio/padre.html" %}
+
+{% load static %}
+
+{% block titulo %}
+Resultado Busqueda
+{% endblock %}
+
+{% block contenido %}
+
+{% if adopcion %}
+    <h1>Resultado</h1>
+    {% for adopcion in adopcion %}
+
+        <h1>Nombre: {{ adopcion.nombre }}</h1>
+        <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
+        <p>Informacion: {{ adopcion.animal_info }}</p>
+        <p>Edad: {{ adopcion.edad }}</p>
+        <p>Raza: {{ adopcion.raza }}</p>
+        <p>Autor: {{ adopcion.autor }}</p>
+        <p>Fecha de Post: {{ adopcion.fecha_creacion }}</p>
+
+    {% endfor %}
+{% else %}
+    <h1>NO EXISTE</h1>
+    
+{% endif %}    
+
+{% endblock %}

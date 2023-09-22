@@ -1,0 +1,9 @@
+{% extends "AppInicio/padre.html" %}
+
+{% block contenido %}
+  <h1>{{ about_me.nombre }}</h1>
+  <p>{{ about_me.descripcion }}</p>
+  {% if about_me.imagen %}
+    <img src="{{ about_me.imagen.url }}" alt="{{ about_me.nombre }}">
+  {% endif %}
+{% endblock %}
