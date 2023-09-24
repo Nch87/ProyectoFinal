@@ -4,6 +4,8 @@ from .forms import *
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse
+from django.contrib import messages
 
 
 #Inicio
@@ -119,27 +121,23 @@ def ayuda_nueva(request):
 
 # Mascotas
 
-@login_required
+
 def pet_lista(request):
     pets = Pet.objects.all()
     return render(request, 'AppInicio/pet_lista.html', {'pets': pets})
 
 @login_required
-def pet_detalle(request, pk):
-    pet = get_object_or_404(Pet, pk=pk)
-    return render(request, 'AppInicio/pet_detalle.html', {'pet': pet})
-
-@login_required
 def pet_nuevo(request):
     if request.method == "POST":
-        form = PetForm(request.POST)
+        form = PetForm(request.POST, request.FILES)
         if form.is_valid():
             pet = form.save(commit=False)
+            pet.autor = request.user
             pet.save()
-            return redirect('AppInicio/pet_detalle', pk=pet.pk)
+            return redirect("AppInicio:home")
     else:
         form = PetForm()
-    return render(request, 'AppInicio/pet_edit.html', {'form': form})
+    return render(request, 'AppInicio/pet_nuevo.html', {'form': form})
 
 # Login
 
@@ -175,4 +173,44 @@ def buscar(request):
         adopcion=Adopcion.objects.filter(raza__icontains=raza)
         return render(request, "AppInicio/resultadoBusqueda.html",{"adopcion":adopcion})
     else:
-        return render(request,"AppInicio/busqueda_adopcion.html", {"mensaje":"No se ingresaron Datos"})    
+        return render(request,"AppInicio/busqueda_adopcion.html", {"mensaje":"No se ingresaron Datos"})   
+    
+
+# Editar Publicacion Adopcion
+
+@login_required
+def editarAdopcion(request, id):
+    adopcion = get_object_or_404(Adopcion, id=id)
+    
+    if adopcion.autor != request.user:
+        return HttpResponse("No tienes permiso para editar esta publicación.")
+    
+    if request.method == 'POST':
+        formulario = AdopcionForm(request.POST, request.FILES, instance=adopcion)
+        if formulario.is_valid():
+            adopcion = formulario.save(commit=False)
+            adopcion.autor = request.user
+            adopcion.save()
+            return redirect('AppInicio:adopcion_detalle', adopcion_id=id)
+    else:
+        formulario = AdopcionForm(instance=adopcion)
+    
+    return render(request, 'AppInicio/editarAdopcion.html', {'formulario': formulario, 'adopcion': adopcion})
+
+
+# Eliminar Publicacion Adopcion
+
+@login_required
+def eliminarAdopcion(request, id):
+    adopcion = get_object_or_404(Adopcion, id=id)
+    if adopcion.autor != request.user:
+        return HttpResponse("No tienes permiso para eliminar esta publicación.")
+    adopcion.delete()
+    messages.success(request, 'La publicación de adopción ha sido eliminada exitosamente.')
+    formulario_adopcion = AdopcionForm()
+    adopciones = Adopcion.objects.all()
+    return render(request, "AppInicio/adopcion_lista.html", {"formulario": formulario_adopcion, "adopcion": adopciones})
+
+
+
+     

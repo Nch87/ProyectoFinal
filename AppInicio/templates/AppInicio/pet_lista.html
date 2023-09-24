@@ -1,13 +1,35 @@
 {% extends "AppInicio/padre.html" %}
 
+{% load static %}
+
+{% block titulo %}
+Nuestra Comunidad
+{% endblock %}
+
 {% block contenido %}
-  <h1>Publicaciones de mascotas</h1>
-  {% for pet in pets %}
-    <div>
-      <h2>{{ pet.titulo }}</h2>
-      <p>{{ pet.pet_info }}</p>
-      <p>{{ pet.contenido }}</p>
-      <a href="{% url 'pet_detalle' pk=pet.pk %}">Ver detalles</a>
+<div class="container my-5">
+  {% if user.is_authenticated %}
+  <a href="{% url 'AppInicio:pet_nuevo' %}" class="btn btn-primary mb-4">Nueva Publicación</a>
+  {% endif %}
+  {% if pets %}
+    <div class="row">
+      {% for pet in pets %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{{ pet.imagen.url }}" alt="{{ pet.titulo }}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{ pet.titulo }}</h5>
+              <p class="card-text">{{ pet.pet_info }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ pet.autor }} - {{ pet.fecha_creacion }}</small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+  {% else %}
+    <p>No hay publicaciones.</p>
+  {% endif %}
+</div>
 {% endblock %}

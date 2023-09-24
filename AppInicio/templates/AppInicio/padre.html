@@ -22,18 +22,18 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Blog Mascotera</a>
-                <a class="btn btn-success" href="{% url 'AppInicio:home' %}" role="button">Inicio</a>
-                <a class="btn btn-success" href="{% url 'AppInicio:adopcion_lista' %}">❤Para Adopcion❤</a>
-                <a class="btn btn-success" href="{% url 'AppInicio:ayuda_lista' %}">Nos Ayudas?😁</a>
+                <a class="navbar-brand" href="{% url 'AppInicio:home' %}">Blog Mascotera</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:adopcion_lista' %}">En Adopcion</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:ayuda_lista' %}">Nos Ayudas?</a>
+                <a class="btn btn-success" href="{% url 'AppInicio:pet_lista' %}">Comunidad</a>
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                   <a class="btn btn-success" href="{% url 'AppInicio:ayuda_detalle' %}">Ayudas</a>
                 {% endif %}
-                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Nueva Adopcion 🤞</a>
-                <a class="btn btn-danger" href="{% url 'AppInicio:busqueda_adopcion' %}">Buscar Adopcion</a>
+                <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Nueva Adopcion</a>
+                <a class="btn btn-danger" href="{% url 'AppInicio:busqueda_adopcion' %}">Buscar</a>
                 <a class="btn btn-danger" href="{% url 'AppInicio:logout' %}">Cerrar sesión</a>
-                <a class="btn btn-info" href="{% url 'AppInicio:editarPerfil' %}">Editar Perfil</a>
+                <a class="btn btn-danger" href="{% url 'AppInicio:editarPerfil' %}">Editar Perfil</a>
                 <p> Bienvenido: {{ user.username }}</p>
             {% else %}
                 <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>              

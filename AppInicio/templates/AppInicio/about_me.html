@@ -1,9 +1,19 @@
 {% extends "AppInicio/padre.html" %}
 
 {% block contenido %}
-  <h1>{{ about_me.nombre }}</h1>
-  <p>{{ about_me.descripcion }}</p>
-  {% if about_me.imagen %}
-    <img src="{{ about_me.imagen.url }}" alt="{{ about_me.nombre }}">
-  {% endif %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        {% if about_me.imagen %}
+          <img src="{{ about_me.imagen.url }}" alt="{{ about_me.nombre }}" class="card-img-top">
+        {% endif %}
+        <div class="card-body">
+          <h2 class="card-title">{{ about_me.nombre }}</h2>
+          <p class="card-text">{{ about_me.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -5,17 +5,28 @@ Lista de Ayudas
 {% endblock %}
 
 {% block contenido %}
-  <h3>Lista de Ayudas</h4>
-  {% if ayudas %}
-    <ul>
-      {% for ayuda in ayudas %}
-        <h4>Nombre: {{ ayuda.nombre }} - Fecha: {{ ayuda.fecha }}</h4>
-        <p>Telefono: {{ ayuda.telefono }} - Email: {{ ayuda.email }}</p>
-        <p>Mensaje: {{ ayuda.mensaje }}</p>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No hay ayudas registradas.</p>
-  {% endif %}
+  <div class="container">
+    <h1 class="text-center mb-4">Lista de Ayudas</h1>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        {% if ayudas %}
+          <ul class="list-group">
+            {% for ayuda in ayudas %}
+              <li class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Nombre: {{ ayuda.nombre }}</h5>
+                  <small>Fecha: {{ ayuda.fecha }}</small>
+                </div>
+                <p class="mb-1">Teléfono: {{ ayuda.telefono }}</p>
+                <p class="mb-1">Email: {{ ayuda.email }}</p>
+                <p class="mb-1">Mensaje: {{ ayuda.mensaje }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No hay ayudas registradas.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %}
-

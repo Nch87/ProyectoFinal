@@ -17,13 +17,14 @@ urlpatterns = [
    path('ayuda_lista/', ayuda_lista, name='ayuda_lista'),
    path('ayuda_nueva/', ayuda_nueva, name='ayuda_nueva'),
    #Pet
-   path('pet_detalle/<int:pk>/', pet_detalle, name='pet_detalle'),
    path('pet_lista/', pet_lista, name='pet_lista'),
    path('pet_nuevo/', pet_nuevo, name='pet_nuevo'),
    #Busqueda
    path("busqueda_adopcion/", busqueda_adopcion, name="busqueda_adopcion"),
    path("buscar/", buscar, name="buscar"),
-   
+   path('editarAdopcion/<int:id>', editarAdopcion, name='editarAdopcion'),
+   path('eliminarAdopcion/<int:id>', eliminarAdopcion, name='eliminarAdopcion'),
+    
     
     
  #LOGIN LOGOUT REGISTER

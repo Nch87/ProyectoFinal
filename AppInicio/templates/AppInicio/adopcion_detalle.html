@@ -1,24 +1,56 @@
 {% extends "AppInicio/padre.html" %}
 
+{% block titulo %}
+Te gustaria Adoptarlo? 😊
+{% endblock %}
+
 {% block contenido %}
-  <h1>Nombre: {{ adopcion.nombre }}</h1>
-  <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
-  <p>Informacion: {{ adopcion.animal_info }}</p>
-  <p>Raza: {{ adopcion.raza }}</p>
-  <p>Autor: {{ adopcion.autor }}</p>
-  <p>Fecha Post: {{ adopcion.fecha_creacion }}</p>
-  <h3>Comentarios</h3>
-  {% for comentario in comentarios %}
-    <p>Comentario: {{ comentario.contenido }}</p>
-    <p>Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</p>
-  {% empty %}
-    <p>No hay comentarios todavía.</p>
-  {% endfor %}
-  <p>Agregar un comentario</p>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Publicar</button>
-  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}" class="img-fluid mb-4">
+        <p><strong>Nombre:</strong> {{ adopcion.nombre }}</p>
+        <p><strong>Información:</strong> {{ adopcion.animal_info }}</p>
+        <p><strong>Raza:</strong> {{ adopcion.raza }}</p>
+        <p><strong>Edad:</strong> {{ adopcion.edad }}</p>
+        <a href="{% url 'AppInicio:editarAdopcion' adopcion.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'AppInicio:eliminarAdopcion' adopcion.id %}" class="btn btn-primary">Eliminar</a>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-header">Detalles de la adopción</div>
+          <div class="card-body">
+            <p><strong>Autor:</strong> {{ adopcion.autor }}</p>
+            <p><strong>Fecha de publicación:</strong> {{ adopcion.fecha_creacion }}</p>
+            <p><strong>Ubicación:</strong> {{ adopcion.ubicacion }}</p>
+            <p><strong>Requisitos de adopción:</strong></p>
+            <ul>
+              <li>Debes ser mayor de edad</li>
+              <li>Debes tener un hogar adecuado para el animal</li>
+              <li>Debes estar dispuesto a asumir la responsabilidad de cuidar al animal</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">Comentarios</div>
+          <div class="card-body">
+            {% for comentario in comentarios %}
+              <p>{{ comentario.contenido }}</p>
+              <p><small>Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</small></p>
+            {% empty %}
+              <p>No hay comentarios todavía.</p>
+            {% endfor %}
+            <hr>
+            <h5>Agregar un comentario</h5>
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Publicar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
 

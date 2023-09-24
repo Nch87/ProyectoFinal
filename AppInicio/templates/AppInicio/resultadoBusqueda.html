@@ -1,29 +1,38 @@
 {% extends "AppInicio/padre.html" %}
 
-{% load static %}
-
 {% block titulo %}
-Resultado Busqueda
+Resultados de Búsqueda
 {% endblock %}
 
 {% block contenido %}
-
-{% if adopcion %}
-    <h1>Resultado</h1>
-    {% for adopcion in adopcion %}
-
-        <h1>Nombre: {{ adopcion.nombre }}</h1>
-        <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
-        <p>Informacion: {{ adopcion.animal_info }}</p>
-        <p>Edad: {{ adopcion.edad }}</p>
-        <p>Raza: {{ adopcion.raza }}</p>
-        <p>Autor: {{ adopcion.autor }}</p>
-        <p>Fecha de Post: {{ adopcion.fecha_creacion }}</p>
-
-    {% endfor %}
-{% else %}
-    <h1>NO EXISTE</h1>
-    
-{% endif %}    
-
+  <div class="container">
+    <h1 class="text-center mb-4">Resultados de Búsqueda</h1>
+    <div class="row">
+      {% if adopcion %}
+        {% for adopcion in adopcion %}
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{ adopcion.nombre }}</h5>
+                <p class="card-text">{{ adopcion.animal_info }}</p>
+                <ul class="list-unstyled">
+                  <li><strong>Edad:</strong> {{ adopcion.edad }}</li>
+                  <li><strong>Raza:</strong> {{ adopcion.raza }}</li>
+                  <li><strong>Autor:</strong> {{ adopcion.autor }}</li>
+                  <li><strong>Fecha de Publicación:</strong> {{ adopcion.fecha_creacion }}</li>
+                </ul>
+                <a href="{% url 'AppInicio:adopcion_detalle' adopcion_id=adopcion.id %}" class="btn btn-primary btn-block">Adoptar ahora</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12">
+          <p>No se encontraron resultados.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}
+

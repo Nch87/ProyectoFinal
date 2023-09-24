@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h1 class="text-center mb-4">Crea una nueva publicación de adopción</h1>
+        <h1 class="text-center mb-4">Sumate a nuestra Comunidad Mascotera</h1>
         <form method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="form-group">
@@ -12,20 +12,12 @@
             {{ form.autor }}
           </div>
           <div class="form-group">
-            {{ form.nombre.label_tag }}
-            {{ form.nombre }}
+            {{ form.titulo.label_tag }}
+            {{ form.titulo }}
           </div>
           <div class="form-group">
-            {{ form.raza.label_tag }}
-            {{ form.raza }}
-          </div>
-          <div class="form-group">
-            {{ form.edad.label_tag }}
-            {{ form.edad }}
-          </div>
-          <div class="form-group">
-            {{ form.animal_info.label_tag }}
-            {{ form.animal_info }}
+            {{ form.pet_info.label_tag }}
+            {{ form.pet_info }}
           </div>
           <div class="form-group">
             {{ form.imagen.label_tag }}

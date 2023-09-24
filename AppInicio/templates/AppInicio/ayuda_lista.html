@@ -5,11 +5,34 @@ Ayudanos a Ayudar!
 {% endblock %}
 
 {% block contenido %}
-  <h1>Dejanos tus datos para contactarte</h1>
-  <form action="{% url 'AppInicio:ayuda_lista' %}"  method="POST">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <button type="submit">Enviar</button>
-  </form>
-{% endblock %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center mb-4">Dejanos tus datos para contactarte</h1>
+        <form action="{% url 'AppInicio:ayuda_lista' %}" method="POST" class="needs-validation" novalidate>
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" class="form-control" required>
+            <div class="invalid-feedback">
+              Por favor, ingresa tu nombre.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico:</label>
+            <input type="email" name="email" id="email" class="form-control" required>
+            <div class="invalid-feedback">
+              Por favor, ingresa un correo electrónico válido.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" name="telefono" id="telefono" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
+{% endblock %}

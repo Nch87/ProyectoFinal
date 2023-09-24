@@ -7,20 +7,40 @@ Registro
 {% endblock %}
 
 {% block contenido %}
-<h3>{{ mensaje }}</h3>
-
-<form action="{% url 'AppInicio:register' %}"  method="POST"> {% csrf_token %}
-      
-  <table>
-
-    {{ form.as_table }}
-    
-  </table>
-  
-  <input type="submit" value="Registrar Usuario">
-
-<form/> 
-
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">{{ title }}</div>
+          <div class="card-body">
+            {% if error_message %}
+              <div class="alert alert-danger">{{ error_message }}</div>
+            {% endif %}
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="username">Nombre de usuario:</label>
+                <input type="text" name="username" id="username" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="password1">Contraseña:</label>
+                <input type="password" name="password1" id="password1" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="password2">Confirmar contraseña:</label>
+                <input type="password" name="password2" id="password2" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3>{{ mensaje }}</h3> 
 {% endblock %}
-
 

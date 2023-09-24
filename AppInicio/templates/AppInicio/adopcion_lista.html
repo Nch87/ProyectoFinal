@@ -1,19 +1,29 @@
-
 {% extends "AppInicio/padre.html" %}
 
 {% load static %}
 
 {% block titulo %}
-Hermosos en Adopcion
+Hermosos en Adopción
 {% endblock %}
 
 {% block contenido %}
-  <h1>Publicaciones de Adopción</h1>
-  {% for adopcion in adopciones %}
-    <h2>{{ adopcion.nombre }}</h2>
-    <p>{{ adopcion.descripcion }}</p>
-    <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}">
-    <p><a href="{% url 'AppInicio:adopcion_detalle' adopcion_id=adopcion.id %}">Ver detalles</a></p>
-  {% endfor %}
+  <div class="container">
+    <div class="row">
+      {% for adopcion in adopciones %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <img src="{{ adopcion.imagen.url }}" alt="{{ adopcion.nombre }}" class="card-img-top">
+            <div class="card-body">
+              <h2 class="card-title">{{ adopcion.nombre }}</h2>
+              <p class="card-text">{{ adopcion.descripcion }}</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="{% url 'AppInicio:adopcion_detalle' adopcion_id=adopcion.id %}" class="btn btn-primary">Ver detalles</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}
 
