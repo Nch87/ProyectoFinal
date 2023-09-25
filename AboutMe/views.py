@@ -13,7 +13,7 @@ def contacto(request):
         if form.is_valid():
             form.save()
             mensaje = 'Gracias por contactarnos. Nos pondremos en contacto contigo a la brevedad.'
-            return render(request, 'AboutMe/contacto.html', {'form': form, 'mensaje': mensaje})
+            return render(request, 'AppInicio/home.html', {'form': form, 'mensaje': mensaje})
     else:
         form = ContactoForm()
     

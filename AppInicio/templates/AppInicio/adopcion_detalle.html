@@ -22,7 +22,6 @@ Te gustaria Adoptarlo? 😊
           <div class="card-body">
             <p><strong>Autor:</strong> {{ adopcion.autor }}</p>
             <p><strong>Fecha de publicación:</strong> {{ adopcion.fecha_creacion }}</p>
-            <p><strong>Ubicación:</strong> {{ adopcion.ubicacion }}</p>
             <p><strong>Requisitos de adopción:</strong></p>
             <ul>
               <li>Debes ser mayor de edad</li>
@@ -35,8 +34,10 @@ Te gustaria Adoptarlo? 😊
           <div class="card-header">Comentarios</div>
           <div class="card-body">
             {% for comentario in comentarios %}
-              <p>{{ comentario.contenido }}</p>
-              <p><small>Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</small></p>
+              <div class="comentario mb-3">
+                <p class="d-inline">{{ comentario.contenido }}</p>
+                <small class="text-muted d-inline ml-2">Publicado por {{ comentario.autor.username }} el {{ comentario.pub_date }}</small>
+              </div>
             {% empty %}
               <p>No hay comentarios todavía.</p>
             {% endfor %}
@@ -52,5 +53,11 @@ Te gustaria Adoptarlo? 😊
       </div>
     </div>
   </div>
+
+  <style>
+    .comentario {
+      margin-bottom: 1rem;
+    }
+  </style>
 {% endblock %}
 

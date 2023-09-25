@@ -32,8 +32,8 @@
                 {% endif %}
                 <a class="btn btn-info" href="{% url 'AppInicio:adopcion_nuevo' %}">Nueva Adopcion</a>
                 <a class="btn btn-danger" href="{% url 'AppInicio:busqueda_adopcion' %}">Buscar</a>
-                <a class="btn btn-danger" href="{% url 'AppInicio:logout' %}">Cerrar sesión</a>
                 <a class="btn btn-danger" href="{% url 'AppInicio:editarPerfil' %}">Editar Perfil</a>
+                <a class="btn btn-danger" href="{% url 'AppInicio:logout' %}">Cerrar sesión</a>
                 <p> Bienvenido: {{ user.username }}</p>
             {% else %}
                 <a class="btn btn-success" href="{% url 'AppInicio:login' %}">Ingresar</a>              
