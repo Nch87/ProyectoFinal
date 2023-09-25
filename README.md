@@ -155,9 +155,6 @@ Esta vista se utiliza para crear una nueva solicitud de ayuda. Si el método de 
 ### Vista pet_lista
 Esta vista se utiliza para mostrar una lista de mascotas existentes.
 
-### Vista pet_detalle
-Esta vista se utiliza para mostrar los detalles de una mascota existente.
-
 ### Vista pet_nuevo
 Esta vista se utiliza para crear una nueva mascota. Si el método de solicitud es POST, el formulario de creación se valida y se crea una nueva mascota. Si el formulario no es válido, se muestra un mensaje de error y se vuelve a mostrar el formulario. Si el método de solicitud es GET, se muestra el formulario de creación.
 
@@ -178,6 +175,5 @@ Esta vista se utiliza para permitir que los usuarios envíen un mensaje de conta
 
 ## Este proyecto utiliza las siguientes bibliotecas y recursos:
 - Bootstrap 5
-- Font Awesome 5
 - Imágenes de animales 
 
